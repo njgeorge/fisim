@@ -1,0 +1,124 @@
+%{
+my $subckt;
+my %entitynets;
+my $net;
+my $netlist = "";
+my $item;
+my $componentline;
+my $subcktheaderline;
+my @properties;
+my @componentlist = ();
+my $verbose = 0;
+
+open NETOUT, ">newnetlist" or die "Cannot open newnetlist to write\n";
+%}
+
+%%
+
+netlist:		listofstatements
+			{ 
+				if($verbose){print "subckt main\n";}
+				print NETOUT "subckt main\n";
+				for $item(@componentlist){ 
+					if($verbose){print "$item";}
+					print NETOUT "$item";
+				}
+				if($verbose){print "ends main\n";}
+				print NETOUT "ends main\n";
+				print "Syntax is correct.\n"; 
+			} ;
+
+listofstatements:	statement
+			| listofstatements statement
+			;
+
+statement:		includestatement
+			| simkeyword langkeyword equals identifier newline
+			| globalkeyword integer newline
+			| subcktdefn
+			| component
+			| whitespace
+			;
+
+includestatement:	includekeyword quotedstring listofproperties whitespace;
+
+subcktdefn:		subcktheader listofcomponents subcktfooter whitespace 	
+			{ 
+				if($verbose){print "ends $subckt\n\n";}
+				print NETOUT "ends $subckt\n\n"; 
+				$subckt = "";
+				@componentlist = ();
+			} ;
+
+subcktheader:		subcktkeyword identifier listofnets whitespace
+			{ 
+				$subcktheaderline = "subckt ".$_[2]." ".$netlist."\n";
+				$subckt = $_[2];
+				if($verbose){print "$subcktheaderline";}
+				$netlist = "";
+				print NETOUT "$subcktheaderline";
+			} ;
+
+subcktfooter:		endskeyword identifier whitespace
+			;
+
+listofcomponents:	component whitespace 
+			| listofcomponents component whitespace
+			;
+
+component:		identifier leftp listofnets rightp identifier listofproperties newline		
+			{ 	
+				$componentline = $_[1]." ".$_[5]." ".$netlist."\n";
+				push @componentlist, $componentline;
+				if($subckt ne ""){
+					if($verbose){print "$componentline";}
+					print NETOUT "$componentline";
+				}
+				$componentline = "";
+				$netlist = "";
+			} 
+			| identifier leftp listofnets rightp bslash newline identifier listofproperties newline
+			{ 	
+				$componentline = $_[1]." ".$_[7]." ".$netlist."\n";
+				push @componentlist, $componentline;
+				if($subckt ne ""){
+					if($verbose){print "$componentline";}
+					print NETOUT "$componentline";
+				}
+				$componentline = "";
+				$netlist = "";
+			} 
+
+;
+
+listofproperties:	# could be empty
+			| property					{}
+			| listofproperties property			{}
+			| listofproperties bslash newline listofproperties
+			;
+
+property:		identifier equals integer	{}
+			| identifier equals float	{}
+			| identifier equals sci 	{}
+			| identifier equals identifier 	{}
+			;
+
+listofnets:		identifier				# should be at least one
+			{ 
+				$netlist .= $_[1]." ";
+			}
+			| listofnets identifier
+			{
+				$netlist .= $_[2]." "; 
+			} 
+			| listofnets bslash newline listofnets
+			;
+
+whitespace:		# nothing
+			| newline
+			| whitespace newline
+			;
+
+%%
+
+

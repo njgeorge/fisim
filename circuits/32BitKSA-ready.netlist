@@ -1,0 +1,2074 @@
+
+// Library name: CORE9GPLL
+// Cell name: ND2LL
+// View name: cmos_sch
+subckt ND2LL A B Z inh_gnd inh_vdd
+    MP1 (Z B inh_vdd inh_vdd) EPLLGP_BS3JU w=0.77u l=0.13u nfing=1 ncrsd=1 \
+        number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 lpe=0
+    MP0 (Z A inh_vdd inh_vdd) EPLLGP_BS3JU w=0.77u l=0.13u nfing=1 ncrsd=1 \
+        number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 lpe=0
+    MN1 (Z B net15 inh_gnd) ENLLGP_BS3JU w=0.64u l=0.13u nfing=1 ncrsd=1 \
+        number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+    MN0 (net15 A inh_gnd inh_gnd) ENLLGP_BS3JU w=0.64u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+ends ND2LL
+// End of subcircuit definition.
+
+// Library name: CORE9GPLL
+// Cell name: ND2ALL
+// View name: cmos_sch
+subckt ND2ALL A B Z inh_gnd inh_vdd
+    MP4 (net025 A inh_vdd inh_vdd) EPLLGP_BS3JU w=0.3u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 \
+        lpe=0
+    MP1 (Z B inh_vdd inh_vdd) EPLLGP_BS3JU w=0.77u l=0.13u nfing=1 ncrsd=1 \
+        number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 lpe=0
+    MP0 (Z net025 inh_vdd inh_vdd) EPLLGP_BS3JU w=0.77u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 \
+        lpe=0
+    MN4 (net025 A inh_gnd inh_gnd) ENLLGP_BS3JU w=0.15u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+    MN1 (Z B net12 inh_gnd) ENLLGP_BS3JU w=0.64u l=0.13u nfing=1 ncrsd=1 \
+        number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+    MN0 (net12 net025 inh_gnd inh_gnd) ENLLGP_BS3JU w=0.64u l=0.13u \
+        nfing=1 ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 \
+        lpe=0
+ends ND2ALL
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_63
+// View name: schematic
+subckt CarryOperator_63 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g12 (Gi2 Pi1 n_0 inh_gnd inh_vdd) ND2LL
+    g11 (Gi1 n_0 Go inh_gnd inh_vdd) ND2ALL
+    Thru (GND Po) iprobe
+ends CarryOperator_63
+// End of subcircuit definition.
+
+// Library name: CORE9GPLL
+// Cell name: AN2LL
+// View name: cmos_sch
+subckt AN2LL A B Z inh_gnd inh_vdd
+    MP2 (Z net038 inh_vdd inh_vdd) EPLLGP_BS3JU w=1.05u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 \
+        lpe=0
+    MP1 (net038 B inh_vdd inh_vdd) EPLLGP_BS3JU w=0.38u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 \
+        lpe=0
+    MP0 (net038 A inh_vdd inh_vdd) EPLLGP_BS3JU w=0.38u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 \
+        lpe=0
+    MN2 (Z net038 inh_gnd inh_gnd) ENLLGP_BS3JU w=0.585u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+    MN1 (net038 B net12 inh_gnd) ENLLGP_BS3JU w=0.32u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+    MN0 (net12 A inh_gnd inh_gnd) ENLLGP_BS3JU w=0.32u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+ends AN2LL
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_78
+// View name: schematic
+subckt CarryOperator_78 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_78
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_106
+// View name: schematic
+subckt CarryOperator_106 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_106
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_98
+// View name: schematic
+subckt CarryOperator_98 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_98
+// End of subcircuit definition.
+
+// Library name: CORE9GPLL
+// Cell name: HA1LL
+// View name: cmos_sch
+subckt HA1LL A B CO S inh_gnd inh_vdd
+    MN5 (net34 net14 inh_gnd inh_gnd) ENLLGP_BS3JU w=0.3u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+    MN10 (S net0119 inh_gnd inh_gnd) ENLLGP_BS3JU w=0.585u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+    MN8 (CO net14 inh_gnd inh_gnd) ENLLGP_BS3JU w=0.585u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+    MN6 (net0119 B net34 inh_gnd) ENLLGP_BS3JU w=0.3u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+    MN4 (net0119 A net34 inh_gnd) ENLLGP_BS3JU w=0.3u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+    MN3 (net35 A inh_gnd inh_gnd) ENLLGP_BS3JU w=0.3u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+    MN2 (net14 B net35 inh_gnd) ENLLGP_BS3JU w=0.3u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+    MP10 (S net0119 inh_vdd inh_vdd) EPLLGP_BS3JU w=1.05u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 \
+        lpe=0
+    MP8 (CO net14 inh_vdd inh_vdd) EPLLGP_BS3JU w=1.05u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 \
+        lpe=0
+    MP6 (net0119 net14 inh_vdd inh_vdd) EPLLGP_BS3JU w=0.36u l=0.13u \
+        nfing=1 ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 \
+        nbti=0 lpe=0
+    MP5 (net0119 A net0128 inh_vdd) EPLLGP_BS3JU w=0.63u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 \
+        lpe=0
+    MP4 (net0128 B inh_vdd inh_vdd) EPLLGP_BS3JU w=0.63u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 \
+        lpe=0
+    MP3 (net14 A inh_vdd inh_vdd) EPLLGP_BS3JU w=0.36u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 \
+        lpe=0
+    MP2 (net14 B inh_vdd inh_vdd) EPLLGP_BS3JU w=0.36u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 \
+        lpe=0
+ends HA1LL
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: GPGenerator
+// View name: schematic
+subckt GPGenerator Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: GPGenerator_1
+// View name: schematic
+subckt GPGenerator_1 Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator_1
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator
+// View name: schematic
+subckt CarryOperator Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g12 (Gi2 Pi1 n_0 inh_gnd inh_vdd) ND2LL
+    g11 (Gi1 n_0 Go inh_gnd inh_vdd) ND2ALL
+    Thru (GND Po) iprobe
+ends CarryOperator
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_32
+// View name: schematic
+subckt CarryOperator_32 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_32
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: GPGenerator_2
+// View name: schematic
+subckt GPGenerator_2 Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator_2
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_33
+// View name: schematic
+subckt CarryOperator_33 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_33
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: GPGenerator_3
+// View name: schematic
+subckt GPGenerator_3 Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator_3
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_62
+// View name: schematic
+subckt CarryOperator_62 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g12 (Gi2 Pi1 n_0 inh_gnd inh_vdd) ND2LL
+    g11 (Gi1 n_0 Go inh_gnd inh_vdd) ND2ALL
+    Thru (GND Po) iprobe
+ends CarryOperator_62
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_64
+// View name: schematic
+subckt CarryOperator_64 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_64
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_34
+// View name: schematic
+subckt CarryOperator_34 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_34
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_66
+// View name: schematic
+subckt CarryOperator_66 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_66
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_94
+// View name: schematic
+subckt CarryOperator_94 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g12 (Gi2 Pi1 n_0 inh_gnd inh_vdd) ND2LL
+    g11 (Gi1 n_0 Go inh_gnd inh_vdd) ND2ALL
+    Thru (GND Po) iprobe
+ends CarryOperator_94
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: GPGenerator_4
+// View name: schematic
+subckt GPGenerator_4 Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator_4
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_65
+// View name: schematic
+subckt CarryOperator_65 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_65
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_35
+// View name: schematic
+subckt CarryOperator_35 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_35
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_67
+// View name: schematic
+subckt CarryOperator_67 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_67
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: GPGenerator_5
+// View name: schematic
+subckt GPGenerator_5 Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator_5
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_36
+// View name: schematic
+subckt CarryOperator_36 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_36
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_68
+// View name: schematic
+subckt CarryOperator_68 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_68
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: GPGenerator_6
+// View name: schematic
+subckt GPGenerator_6 Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator_6
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_37
+// View name: schematic
+subckt CarryOperator_37 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_37
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_69
+// View name: schematic
+subckt CarryOperator_69 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_69
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: GPGenerator_7
+// View name: schematic
+subckt GPGenerator_7 Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator_7
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_38
+// View name: schematic
+subckt CarryOperator_38 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_38
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_70
+// View name: schematic
+subckt CarryOperator_70 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_70
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: GPGenerator_8
+// View name: schematic
+subckt GPGenerator_8 Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator_8
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_39
+// View name: schematic
+subckt CarryOperator_39 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_39
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: GPGenerator_9
+// View name: schematic
+subckt GPGenerator_9 Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator_9
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_71
+// View name: schematic
+subckt CarryOperator_71 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_71
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_40
+// View name: schematic
+subckt CarryOperator_40 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_40
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_72
+// View name: schematic
+subckt CarryOperator_72 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_72
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_102
+// View name: schematic
+subckt CarryOperator_102 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_102
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: GPGenerator_10
+// View name: schematic
+subckt GPGenerator_10 Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator_10
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_41
+// View name: schematic
+subckt CarryOperator_41 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_41
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_73
+// View name: schematic
+subckt CarryOperator_73 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_73
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: GPGenerator_11
+// View name: schematic
+subckt GPGenerator_11 Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator_11
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_42
+// View name: schematic
+subckt CarryOperator_42 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_42
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_74
+// View name: schematic
+subckt CarryOperator_74 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_74
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: GPGenerator_12
+// View name: schematic
+subckt GPGenerator_12 Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator_12
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_43
+// View name: schematic
+subckt CarryOperator_43 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_43
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_75
+// View name: schematic
+subckt CarryOperator_75 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_75
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: GPGenerator_13
+// View name: schematic
+subckt GPGenerator_13 Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator_13
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_44
+// View name: schematic
+subckt CarryOperator_44 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_44
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_76
+// View name: schematic
+subckt CarryOperator_76 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_76
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: GPGenerator_14
+// View name: schematic
+subckt GPGenerator_14 Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator_14
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_45
+// View name: schematic
+subckt CarryOperator_45 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_45
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_77
+// View name: schematic
+subckt CarryOperator_77 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_77
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: GPGenerator_15
+// View name: schematic
+subckt GPGenerator_15 Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator_15
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_46
+// View name: schematic
+subckt CarryOperator_46 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_46
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: GPGenerator_16
+// View name: schematic
+subckt GPGenerator_16 Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator_16
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_47
+// View name: schematic
+subckt CarryOperator_47 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_47
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_79
+// View name: schematic
+subckt CarryOperator_79 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_79
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: GPGenerator_17
+// View name: schematic
+subckt GPGenerator_17 Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator_17
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_48
+// View name: schematic
+subckt CarryOperator_48 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_48
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_80
+// View name: schematic
+subckt CarryOperator_80 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_80
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_90
+// View name: schematic
+subckt CarryOperator_90 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_90
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_60
+// View name: schematic
+subckt CarryOperator_60 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_60
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_118
+// View name: schematic
+subckt CarryOperator_118 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_118
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_110
+// View name: schematic
+subckt CarryOperator_110 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_110
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_158
+// View name: schematic
+subckt CarryOperator_158 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g12 (Gi2 Pi1 n_0 inh_gnd inh_vdd) ND2LL
+    g11 (Gi1 n_0 Go inh_gnd inh_vdd) ND2ALL
+    Thru (GND Po) iprobe
+ends CarryOperator_158
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_142
+// View name: schematic
+subckt CarryOperator_142 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_142
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_93
+// View name: schematic
+subckt CarryOperator_93 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g12 (Gi2 Pi1 n_0 inh_gnd inh_vdd) ND2LL
+    g11 (Gi1 n_0 Go inh_gnd inh_vdd) ND2ALL
+    Thru (GND Po) iprobe
+ends CarryOperator_93
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_101
+// View name: schematic
+subckt CarryOperator_101 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_101
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_105
+// View name: schematic
+subckt CarryOperator_105 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_105
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_109
+// View name: schematic
+subckt CarryOperator_109 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_109
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_97
+// View name: schematic
+subckt CarryOperator_97 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_97
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_133
+// View name: schematic
+subckt CarryOperator_133 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_133
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_149
+// View name: schematic
+subckt CarryOperator_149 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g12 (Gi2 Pi1 n_0 inh_gnd inh_vdd) ND2LL
+    g11 (Gi1 n_0 Go inh_gnd inh_vdd) ND2ALL
+    Thru (GND Po) iprobe
+ends CarryOperator_149
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_157
+// View name: schematic
+subckt CarryOperator_157 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g12 (Gi2 Pi1 n_0 inh_gnd inh_vdd) ND2LL
+    g11 (Gi1 n_0 Go inh_gnd inh_vdd) ND2ALL
+    Thru (GND Po) iprobe
+ends CarryOperator_157
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_141
+// View name: schematic
+subckt CarryOperator_141 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_141
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_117
+// View name: schematic
+subckt CarryOperator_117 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_117
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_89
+// View name: schematic
+subckt CarryOperator_89 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_89
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_129
+// View name: schematic
+subckt CarryOperator_129 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_129
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_145
+// View name: schematic
+subckt CarryOperator_145 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g12 (Gi2 Pi1 n_0 inh_gnd inh_vdd) ND2LL
+    g11 (Gi1 n_0 Go inh_gnd inh_vdd) ND2ALL
+    Thru (GND Po) iprobe
+ends CarryOperator_145
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_137
+// View name: schematic
+subckt CarryOperator_137 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_137
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_113
+// View name: schematic
+subckt CarryOperator_113 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_113
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_153
+// View name: schematic
+subckt CarryOperator_153 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g12 (Gi2 Pi1 n_0 inh_gnd inh_vdd) ND2LL
+    g11 (Gi1 n_0 Go inh_gnd inh_vdd) ND2ALL
+    Thru (GND Po) iprobe
+ends CarryOperator_153
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_84
+// View name: schematic
+subckt CarryOperator_84 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_84
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_88
+// View name: schematic
+subckt CarryOperator_88 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_88
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_116
+// View name: schematic
+subckt CarryOperator_116 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_116
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_81
+// View name: schematic
+subckt CarryOperator_81 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_81
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_49
+// View name: schematic
+subckt CarryOperator_49 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_49
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: GPGenerator_18
+// View name: schematic
+subckt GPGenerator_18 Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator_18
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_50
+// View name: schematic
+subckt CarryOperator_50 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_50
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_82
+// View name: schematic
+subckt CarryOperator_82 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_82
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_125
+// View name: schematic
+subckt CarryOperator_125 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g12 (Gi2 Pi1 n_0 inh_gnd inh_vdd) ND2LL
+    g11 (Gi1 n_0 Go inh_gnd inh_vdd) ND2ALL
+    Thru (GND Po) iprobe
+ends CarryOperator_125
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_121
+// View name: schematic
+subckt CarryOperator_121 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g12 (Gi2 Pi1 n_0 inh_gnd inh_vdd) ND2LL
+    g11 (Gi1 n_0 Go inh_gnd inh_vdd) ND2ALL
+    Thru (GND Po) iprobe
+ends CarryOperator_121
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_85
+// View name: schematic
+subckt CarryOperator_85 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_85
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: GPGenerator_19
+// View name: schematic
+subckt GPGenerator_19 Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator_19
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: GPGenerator_20
+// View name: schematic
+subckt GPGenerator_20 Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator_20
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_51
+// View name: schematic
+subckt CarryOperator_51 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_51
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_83
+// View name: schematic
+subckt CarryOperator_83 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_83
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_53
+// View name: schematic
+subckt CarryOperator_53 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_53
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_52
+// View name: schematic
+subckt CarryOperator_52 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_52
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: GPGenerator_22
+// View name: schematic
+subckt GPGenerator_22 Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator_22
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: GPGenerator_21
+// View name: schematic
+subckt GPGenerator_21 Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator_21
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: GPGenerator_23
+// View name: schematic
+subckt GPGenerator_23 Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator_23
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_54
+// View name: schematic
+subckt CarryOperator_54 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_54
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_86
+// View name: schematic
+subckt CarryOperator_86 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_86
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: GPGenerator_24
+// View name: schematic
+subckt GPGenerator_24 Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator_24
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_55
+// View name: schematic
+subckt CarryOperator_55 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_55
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_87
+// View name: schematic
+subckt CarryOperator_87 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_87
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_57
+// View name: schematic
+subckt CarryOperator_57 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_57
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_56
+// View name: schematic
+subckt CarryOperator_56 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_56
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: GPGenerator_26
+// View name: schematic
+subckt GPGenerator_26 Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator_26
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: GPGenerator_25
+// View name: schematic
+subckt GPGenerator_25 Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator_25
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: GPGenerator_27
+// View name: schematic
+subckt GPGenerator_27 Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator_27
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_58
+// View name: schematic
+subckt CarryOperator_58 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_58
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_114
+// View name: schematic
+subckt CarryOperator_114 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_114
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_139
+// View name: schematic
+subckt CarryOperator_139 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_139
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_119
+// View name: schematic
+subckt CarryOperator_119 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_119
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_143
+// View name: schematic
+subckt CarryOperator_143 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_143
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_159
+// View name: schematic
+subckt CarryOperator_159 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g12 (Gi2 Pi1 n_0 inh_gnd inh_vdd) ND2LL
+    g11 (Gi1 n_0 Go inh_gnd inh_vdd) ND2ALL
+    Thru (GND Po) iprobe
+ends CarryOperator_159
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_111
+// View name: schematic
+subckt CarryOperator_111 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_111
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_115
+// View name: schematic
+subckt CarryOperator_115 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_115
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_59
+// View name: schematic
+subckt CarryOperator_59 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_59
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: GPGenerator_28
+// View name: schematic
+subckt GPGenerator_28 Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator_28
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: GPGenerator_29
+// View name: schematic
+subckt GPGenerator_29 Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator_29
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_91
+// View name: schematic
+subckt CarryOperator_91 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_91
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_155
+// View name: schematic
+subckt CarryOperator_155 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g12 (Gi2 Pi1 n_0 inh_gnd inh_vdd) ND2LL
+    g11 (Gi1 n_0 Go inh_gnd inh_vdd) ND2ALL
+    Thru (GND Po) iprobe
+ends CarryOperator_155
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: GPGenerator_31
+// View name: schematic
+subckt GPGenerator_31 Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator_31
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: GPGenerator_30
+// View name: schematic
+subckt GPGenerator_30 Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator_30
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_61
+// View name: schematic
+subckt CarryOperator_61 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_61
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_136
+// View name: schematic
+subckt CarryOperator_136 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_136
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_152
+// View name: schematic
+subckt CarryOperator_152 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g12 (Gi2 Pi1 n_0 inh_gnd inh_vdd) ND2LL
+    g11 (Gi1 n_0 Go inh_gnd inh_vdd) ND2ALL
+    Thru (GND Po) iprobe
+ends CarryOperator_152
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_104
+// View name: schematic
+subckt CarryOperator_104 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_104
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_108
+// View name: schematic
+subckt CarryOperator_108 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_108
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_112
+// View name: schematic
+subckt CarryOperator_112 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_112
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_96
+// View name: schematic
+subckt CarryOperator_96 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_96
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_92
+// View name: schematic
+subckt CarryOperator_92 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g12 (Gi2 Pi1 n_0 inh_gnd inh_vdd) ND2LL
+    g11 (Gi1 n_0 Go inh_gnd inh_vdd) ND2ALL
+    Thru (GND Po) iprobe
+ends CarryOperator_92
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_100
+// View name: schematic
+subckt CarryOperator_100 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_100
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_140
+// View name: schematic
+subckt CarryOperator_140 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_140
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_156
+// View name: schematic
+subckt CarryOperator_156 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g12 (Gi2 Pi1 n_0 inh_gnd inh_vdd) ND2LL
+    g11 (Gi1 n_0 Go inh_gnd inh_vdd) ND2ALL
+    Thru (GND Po) iprobe
+ends CarryOperator_156
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_103
+// View name: schematic
+subckt CarryOperator_103 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_103
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_99
+// View name: schematic
+subckt CarryOperator_99 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_99
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_95
+// View name: schematic
+subckt CarryOperator_95 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g12 (Gi2 Pi1 n_0 inh_gnd inh_vdd) ND2LL
+    g11 (Gi1 n_0 Go inh_gnd inh_vdd) ND2ALL
+    Thru (GND Po) iprobe
+ends CarryOperator_95
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_107
+// View name: schematic
+subckt CarryOperator_107 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_107
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_128
+// View name: schematic
+subckt CarryOperator_128 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_128
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_144
+// View name: schematic
+subckt CarryOperator_144 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g12 (Gi2 Pi1 n_0 inh_gnd inh_vdd) ND2LL
+    g11 (Gi1 n_0 Go inh_gnd inh_vdd) ND2ALL
+    Thru (GND Po) iprobe
+ends CarryOperator_144
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_132
+// View name: schematic
+subckt CarryOperator_132 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_132
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_148
+// View name: schematic
+subckt CarryOperator_148 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g12 (Gi2 Pi1 n_0 inh_gnd inh_vdd) ND2LL
+    g11 (Gi1 n_0 Go inh_gnd inh_vdd) ND2ALL
+    Thru (GND Po) iprobe
+ends CarryOperator_148
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_135
+// View name: schematic
+subckt CarryOperator_135 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_135
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_151
+// View name: schematic
+subckt CarryOperator_151 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g12 (Gi2 Pi1 n_0 inh_gnd inh_vdd) ND2LL
+    g11 (Gi1 n_0 Go inh_gnd inh_vdd) ND2ALL
+    Thru (GND Po) iprobe
+ends CarryOperator_151
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_131
+// View name: schematic
+subckt CarryOperator_131 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_131
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_147
+// View name: schematic
+subckt CarryOperator_147 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g12 (Gi2 Pi1 n_0 inh_gnd inh_vdd) ND2LL
+    g11 (Gi1 n_0 Go inh_gnd inh_vdd) ND2ALL
+    Thru (GND Po) iprobe
+ends CarryOperator_147
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_120
+// View name: schematic
+subckt CarryOperator_120 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g12 (Gi2 Pi1 n_0 inh_gnd inh_vdd) ND2LL
+    g11 (Gi1 n_0 Go inh_gnd inh_vdd) ND2ALL
+    Thru (GND Po) iprobe
+ends CarryOperator_120
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_124
+// View name: schematic
+subckt CarryOperator_124 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g12 (Gi2 Pi1 n_0 inh_gnd inh_vdd) ND2LL
+    g11 (Gi1 n_0 Go inh_gnd inh_vdd) ND2ALL
+    Thru (GND Po) iprobe
+ends CarryOperator_124
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_127
+// View name: schematic
+subckt CarryOperator_127 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g12 (Gi2 Pi1 n_0 inh_gnd inh_vdd) ND2LL
+    g11 (Gi1 n_0 Go inh_gnd inh_vdd) ND2ALL
+    Thru (GND Po) iprobe
+ends CarryOperator_127
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_123
+// View name: schematic
+subckt CarryOperator_123 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g12 (Gi2 Pi1 n_0 inh_gnd inh_vdd) ND2LL
+    g11 (Gi1 n_0 Go inh_gnd inh_vdd) ND2ALL
+    Thru (GND Po) iprobe
+ends CarryOperator_123
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_146
+// View name: schematic
+subckt CarryOperator_146 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g12 (Gi2 Pi1 n_0 inh_gnd inh_vdd) ND2LL
+    g11 (Gi1 n_0 Go inh_gnd inh_vdd) ND2ALL
+    Thru (GND Po) iprobe
+ends CarryOperator_146
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_122
+// View name: schematic
+subckt CarryOperator_122 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g12 (Gi2 Pi1 n_0 inh_gnd inh_vdd) ND2LL
+    g11 (Gi1 n_0 Go inh_gnd inh_vdd) ND2ALL
+    Thru (GND Po) iprobe
+ends CarryOperator_122
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_130
+// View name: schematic
+subckt CarryOperator_130 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_130
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_154
+// View name: schematic
+subckt CarryOperator_154 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g12 (Gi2 Pi1 n_0 inh_gnd inh_vdd) ND2LL
+    g11 (Gi1 n_0 Go inh_gnd inh_vdd) ND2ALL
+    Thru (GND Po) iprobe
+ends CarryOperator_154
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_138
+// View name: schematic
+subckt CarryOperator_138 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_138
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_150
+// View name: schematic
+subckt CarryOperator_150 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g12 (Gi2 Pi1 n_0 inh_gnd inh_vdd) ND2LL
+    g11 (Gi1 n_0 Go inh_gnd inh_vdd) ND2ALL
+    Thru (GND Po) iprobe
+ends CarryOperator_150
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_126
+// View name: schematic
+subckt CarryOperator_126 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g12 (Gi2 Pi1 n_0 inh_gnd inh_vdd) ND2LL
+    g11 (Gi1 n_0 Go inh_gnd inh_vdd) ND2ALL
+    Thru (GND Po) iprobe
+ends CarryOperator_126
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: CarryOperator_134
+// View name: schematic
+subckt CarryOperator_134 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_134
+// End of subcircuit definition.
+
+// Library name: CORE9GPLL
+// Cell name: MUX21NLL
+// View name: cmos_sch
+subckt MUX21NLL A B S Z inh_gnd inh_vdd
+    MP39 (Z net055 net0292 inh_vdd) EPLLGP_BS3JU w=0.965u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 \
+        lpe=0
+    MP21 (net0292 B inh_vdd inh_vdd) EPLLGP_BS3JU w=0.965u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 \
+        lpe=0
+    MP23 (net055 S inh_vdd inh_vdd) EPLLGP_BS3JU w=0.965u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 \
+        lpe=0
+    MP40 (Z S net0280 inh_vdd) EPLLGP_BS3JU w=0.965u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 \
+        lpe=0
+    MP41 (net0280 A inh_vdd inh_vdd) EPLLGP_BS3JU w=0.965u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 \
+        lpe=0
+    MN37 (Z S net057 inh_gnd) ENLLGP_BS3JU w=0.535u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+    MN19 (net057 B inh_gnd inh_gnd) ENLLGP_BS3JU w=0.535u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+    MN21 (net055 S inh_gnd inh_gnd) ENLLGP_BS3JU w=0.535u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+    MN38 (Z net055 net0215 inh_gnd) ENLLGP_BS3JU w=0.535u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+    MN39 (net0215 A inh_gnd inh_gnd) ENLLGP_BS3JU w=0.535u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+ends MUX21NLL
+// End of subcircuit definition.
+
+// Library name: CORE9GPLL
+// Cell name: IVLLX05
+// View name: cmos_sch
+subckt IVLLX05 A Z inh_gnd inh_vdd
+    MP0 (Z A inh_vdd inh_vdd) EPLLGP_BS3JU w=0.47u l=0.13u nfing=1 ncrsd=1 \
+        number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 lpe=0
+    MN0 (Z A inh_gnd inh_gnd) ENLLGP_BS3JU w=0.25u l=0.13u nfing=1 ncrsd=1 \
+        number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+ends IVLLX05
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: UBPriKSA_31_0
+// View name: schematic
+subckt UBPriKSA_31_0 S_32 S_31 S_30 S_29 S_28 S_27 S_26 S_25 S_24 S_23 \
+        S_22 S_21 S_20 S_19 S_18 S_17 S_16 S_15 S_14 S_13 S_12 S_11 S_10 \
+        S_9 S_8 S_7 S_6 S_5 S_4 S_3 S_2 S_1 S_0 X_31 X_30 X_29 X_28 X_27 \
+        X_26 X_25 X_24 X_23 X_22 X_21 X_20 X_19 X_18 X_17 X_16 X_15 X_14 \
+        X_13 X_12 X_11 X_10 X_9 X_8 X_7 X_6 X_5 X_4 X_3 X_2 X_1 X_0 Y_31 \
+        Y_30 Y_29 Y_28 Y_27 Y_26 Y_25 Y_24 Y_23 Y_22 Y_21 Y_20 Y_19 Y_18 \
+        Y_17 Y_16 Y_15 Y_14 Y_13 Y_12 Y_11 Y_10 Y_9 Y_8 Y_7 Y_6 Y_5 Y_4 \
+        Y_3 Y_2 Y_1 Y_0 Cin inh_gnd inh_vdd
+    U64 (G2_3 UNCONNECTED25 G1_3 P1_3 G1_1 GND inh_gnd inh_vdd) \
+        CarryOperator_63
+    U79 (G2_18 P2_18 G1_18 P1_18 G1_16 P1_16 inh_gnd inh_vdd) \
+        CarryOperator_78
+    U107 (G3_18 P3_18 G2_18 P2_18 G2_14 P2_14 inh_gnd inh_vdd) \
+        CarryOperator_106
+    U99 (G3_10 P3_10 G2_10 P2_10 G2_6 P2_6 inh_gnd inh_vdd) \
+        CarryOperator_98
+    U0 (G_194 S_0 X_0 Y_0 inh_gnd inh_vdd) GPGenerator
+    U1 (G0_1 P0_1 X_1 Y_1 inh_gnd inh_vdd) GPGenerator_1
+    U32 (G1_1 UNCONNECTED23 G0_1 P0_1 G_194 GND inh_gnd inh_vdd) \
+        CarryOperator
+    U33 (G1_2 P1_2 G0_2 P0_2 G0_1 P0_1 inh_gnd inh_vdd) CarryOperator_32
+    U2 (G0_2 P0_2 X_2 Y_2 inh_gnd inh_vdd) GPGenerator_2
+    U34 (G1_3 P1_3 G0_3 P0_3 G0_2 P0_2 inh_gnd inh_vdd) CarryOperator_33
+    U3 (G0_3 P0_3 X_3 Y_3 inh_gnd inh_vdd) GPGenerator_3
+    U63 (G2_2 UNCONNECTED24 G1_2 P1_2 G_194 GND inh_gnd inh_vdd) \
+        CarryOperator_62
+    U65 (G2_4 P2_4 G1_4 P1_4 G1_2 P1_2 inh_gnd inh_vdd) CarryOperator_64
+    U35 (G1_4 P1_4 G0_4 P0_4 G0_3 P0_3 inh_gnd inh_vdd) CarryOperator_34
+    U67 (G2_6 P2_6 G1_6 P1_6 G1_4 P1_4 inh_gnd inh_vdd) CarryOperator_66
+    U95 (G3_6 UNCONNECTED28 G2_6 P2_6 G2_2 GND inh_gnd inh_vdd) \
+        CarryOperator_94
+    U4 (G0_4 P0_4 X_4 Y_4 inh_gnd inh_vdd) GPGenerator_4
+    U66 (G2_5 P2_5 G1_5 P1_5 G1_3 P1_3 inh_gnd inh_vdd) CarryOperator_65
+    U36 (G1_5 P1_5 G0_5 P0_5 G0_4 P0_4 inh_gnd inh_vdd) CarryOperator_35
+    U68 (G2_7 P2_7 G1_7 P1_7 G1_5 P1_5 inh_gnd inh_vdd) CarryOperator_67
+    U5 (G0_5 P0_5 X_5 Y_5 inh_gnd inh_vdd) GPGenerator_5
+    U37 (G1_6 P1_6 G0_6 P0_6 G0_5 P0_5 inh_gnd inh_vdd) CarryOperator_36
+    U69 (G2_8 P2_8 G1_8 P1_8 G1_6 P1_6 inh_gnd inh_vdd) CarryOperator_68
+    U6 (G0_6 P0_6 X_6 Y_6 inh_gnd inh_vdd) GPGenerator_6
+    U38 (G1_7 P1_7 G0_7 P0_7 G0_6 P0_6 inh_gnd inh_vdd) CarryOperator_37
+    U70 (G2_9 P2_9 G1_9 P1_9 G1_7 P1_7 inh_gnd inh_vdd) CarryOperator_69
+    U7 (G0_7 P0_7 X_7 Y_7 inh_gnd inh_vdd) GPGenerator_7
+    U39 (G1_8 P1_8 G0_8 P0_8 G0_7 P0_7 inh_gnd inh_vdd) CarryOperator_38
+    U71 (G2_10 P2_10 G1_10 P1_10 G1_8 P1_8 inh_gnd inh_vdd) \
+        CarryOperator_70
+    U8 (G0_8 P0_8 X_8 Y_8 inh_gnd inh_vdd) GPGenerator_8
+    U40 (G1_9 P1_9 G0_9 P0_9 G0_8 P0_8 inh_gnd inh_vdd) CarryOperator_39
+    U9 (G0_9 P0_9 X_9 Y_9 inh_gnd inh_vdd) GPGenerator_9
+    U72 (G2_11 P2_11 G1_11 P1_11 G1_9 P1_9 inh_gnd inh_vdd) \
+        CarryOperator_71
+    U41 (G1_10 P1_10 G0_10 P0_10 G0_9 P0_9 inh_gnd inh_vdd) \
+        CarryOperator_40
+    U73 (G2_12 P2_12 G1_12 P1_12 G1_10 P1_10 inh_gnd inh_vdd) \
+        CarryOperator_72
+    U103 (G3_14 P3_14 G2_14 P2_14 G2_10 P2_10 inh_gnd inh_vdd) \
+        CarryOperator_102
+    U10 (G0_10 P0_10 X_10 Y_10 inh_gnd inh_vdd) GPGenerator_10
+    U42 (G1_11 P1_11 G0_11 P0_11 G0_10 P0_10 inh_gnd inh_vdd) \
+        CarryOperator_41
+    U74 (G2_13 P2_13 G1_13 P1_13 G1_11 P1_11 inh_gnd inh_vdd) \
+        CarryOperator_73
+    U11 (G0_11 P0_11 X_11 Y_11 inh_gnd inh_vdd) GPGenerator_11
+    U43 (G1_12 P1_12 G0_12 P0_12 G0_11 P0_11 inh_gnd inh_vdd) \
+        CarryOperator_42
+    U75 (G2_14 P2_14 G1_14 P1_14 G1_12 P1_12 inh_gnd inh_vdd) \
+        CarryOperator_74
+    U12 (G0_12 P0_12 X_12 Y_12 inh_gnd inh_vdd) GPGenerator_12
+    U44 (G1_13 P1_13 G0_13 P0_13 G0_12 P0_12 inh_gnd inh_vdd) \
+        CarryOperator_43
+    U76 (G2_15 P2_15 G1_15 P1_15 G1_13 P1_13 inh_gnd inh_vdd) \
+        CarryOperator_75
+    U13 (G0_13 P0_13 X_13 Y_13 inh_gnd inh_vdd) GPGenerator_13
+    U45 (G1_14 P1_14 G0_14 P0_14 G0_13 P0_13 inh_gnd inh_vdd) \
+        CarryOperator_44
+    U77 (G2_16 P2_16 G1_16 P1_16 G1_14 P1_14 inh_gnd inh_vdd) \
+        CarryOperator_76
+    U14 (G0_14 P0_14 X_14 Y_14 inh_gnd inh_vdd) GPGenerator_14
+    U46 (G1_15 P1_15 G0_15 P0_15 G0_14 P0_14 inh_gnd inh_vdd) \
+        CarryOperator_45
+    U78 (G2_17 P2_17 G1_17 P1_17 G1_15 P1_15 inh_gnd inh_vdd) \
+        CarryOperator_77
+    U15 (G0_15 P0_15 X_15 Y_15 inh_gnd inh_vdd) GPGenerator_15
+    U47 (G1_16 P1_16 G0_16 P0_16 G0_15 P0_15 inh_gnd inh_vdd) \
+        CarryOperator_46
+    U16 (G0_16 P0_16 X_16 Y_16 inh_gnd inh_vdd) GPGenerator_16
+    U48 (G1_17 P1_17 G0_17 P0_17 G0_16 P0_16 inh_gnd inh_vdd) \
+        CarryOperator_47
+    U80 (G2_19 P2_19 G1_19 P1_19 G1_17 P1_17 inh_gnd inh_vdd) \
+        CarryOperator_79
+    U17 (G0_17 P0_17 X_17 Y_17 inh_gnd inh_vdd) GPGenerator_17
+    U49 (G1_18 P1_18 G0_18 P0_18 G0_17 P0_17 inh_gnd inh_vdd) \
+        CarryOperator_48
+    U81 (G2_20 P2_20 G1_20 P1_20 G1_18 P1_18 inh_gnd inh_vdd) \
+        CarryOperator_80
+    U91 (G2_30 P2_30 G1_30 P1_30 G1_28 P1_28 inh_gnd inh_vdd) \
+        CarryOperator_90
+    U61 (G1_30 P1_30 G0_30 P0_30 G0_29 P0_29 inh_gnd inh_vdd) \
+        CarryOperator_60
+    U119 (G3_30 P3_30 G2_30 P2_30 G2_26 P2_26 inh_gnd inh_vdd) \
+        CarryOperator_118
+    U111 (G3_22 P3_22 G2_22 P2_22 G2_18 P2_18 inh_gnd inh_vdd) \
+        CarryOperator_110
+    U159 (G_155 UNCONNECTED21 G4_30 P4_30 G4_14 GND inh_gnd inh_vdd) \
+        CarryOperator_158
+    U143 (G4_30 P4_30 G3_30 P3_30 G3_22 P3_22 inh_gnd inh_vdd) \
+        CarryOperator_142
+    U94 (G3_5 UNCONNECTED27 G2_5 P2_5 G1_1 GND inh_gnd inh_vdd) \
+        CarryOperator_93
+    U102 (G3_13 P3_13 G2_13 P2_13 G2_9 P2_9 inh_gnd inh_vdd) \
+        CarryOperator_101
+    U106 (G3_17 P3_17 G2_17 P2_17 G2_13 P2_13 inh_gnd inh_vdd) \
+        CarryOperator_105
+    U110 (G3_21 P3_21 G2_21 P2_21 G2_17 P2_17 inh_gnd inh_vdd) \
+        CarryOperator_109
+    U98 (G3_9 P3_9 G2_9 P2_9 G2_5 P2_5 inh_gnd inh_vdd) CarryOperator_97
+    U134 (G4_21 P4_21 G3_21 P3_21 G3_13 P3_13 inh_gnd inh_vdd) \
+        CarryOperator_133
+    U150 (G_119 UNCONNECTED12 G4_21 P4_21 G3_5 GND inh_gnd inh_vdd) \
+        CarryOperator_149
+    U158 (G_151 UNCONNECTED20 G4_29 P4_29 G4_13 GND inh_gnd inh_vdd) \
+        CarryOperator_157
+    U142 (G4_29 P4_29 G3_29 P3_29 G3_21 P3_21 inh_gnd inh_vdd) \
+        CarryOperator_141
+    U118 (G3_29 P3_29 G2_29 P2_29 G2_25 P2_25 inh_gnd inh_vdd) \
+        CarryOperator_117
+    U90 (G2_29 P2_29 G1_29 P1_29 G1_27 P1_27 inh_gnd inh_vdd) \
+        CarryOperator_89
+    U130 (G4_17 P4_17 G3_17 P3_17 G3_9 P3_9 inh_gnd inh_vdd) \
+        CarryOperator_129
+    U146 (G_103 UNCONNECTED8 G4_17 P4_17 G1_1 GND inh_gnd inh_vdd) \
+        CarryOperator_145
+    U138 (G4_25 P4_25 G3_25 P3_25 G3_17 P3_17 inh_gnd inh_vdd) \
+        CarryOperator_137
+    U114 (G3_25 P3_25 G2_25 P2_25 G2_21 P2_21 inh_gnd inh_vdd) \
+        CarryOperator_113
+    U154 (G_135 UNCONNECTED16 G4_25 P4_25 G4_9 GND inh_gnd inh_vdd) \
+        CarryOperator_153
+    U85 (G2_24 P2_24 G1_24 P1_24 G1_22 P1_22 inh_gnd inh_vdd) \
+        CarryOperator_84
+    U89 (G2_28 P2_28 G1_28 P1_28 G1_26 P1_26 inh_gnd inh_vdd) \
+        CarryOperator_88
+    U117 (G3_28 P3_28 G2_28 P2_28 G2_24 P2_24 inh_gnd inh_vdd) \
+        CarryOperator_116
+    U82 (G2_21 P2_21 G1_21 P1_21 G1_19 P1_19 inh_gnd inh_vdd) \
+        CarryOperator_81
+    U50 (G1_19 P1_19 G0_19 P0_19 G0_18 P0_18 inh_gnd inh_vdd) \
+        CarryOperator_49
+    U18 (G0_18 P0_18 X_18 Y_18 inh_gnd inh_vdd) GPGenerator_18
+    U51 (G1_20 P1_20 G0_20 P0_20 G0_19 P0_19 inh_gnd inh_vdd) \
+        CarryOperator_50
+    U83 (G2_22 P2_22 G1_22 P1_22 G1_20 P1_20 inh_gnd inh_vdd) \
+        CarryOperator_82
+    U126 (G4_13 UNCONNECTED4 G3_13 P3_13 G3_5 GND inh_gnd inh_vdd) \
+        CarryOperator_125
+    U122 (G4_9 UNCONNECTED0 G3_9 P3_9 G1_1 GND inh_gnd inh_vdd) \
+        CarryOperator_121
+    U86 (G2_25 P2_25 G1_25 P1_25 G1_23 P1_23 inh_gnd inh_vdd) \
+        CarryOperator_85
+    U19 (G0_19 P0_19 X_19 Y_19 inh_gnd inh_vdd) GPGenerator_19
+    U20 (G0_20 P0_20 X_20 Y_20 inh_gnd inh_vdd) GPGenerator_20
+    U52 (G1_21 P1_21 G0_21 P0_21 G0_20 P0_20 inh_gnd inh_vdd) \
+        CarryOperator_51
+    U84 (G2_23 P2_23 G1_23 P1_23 G1_21 P1_21 inh_gnd inh_vdd) \
+        CarryOperator_83
+    U54 (G1_23 P1_23 G0_23 P0_23 G0_22 P0_22 inh_gnd inh_vdd) \
+        CarryOperator_53
+    U53 (G1_22 P1_22 G0_22 P0_22 G0_21 P0_21 inh_gnd inh_vdd) \
+        CarryOperator_52
+    U22 (G0_22 P0_22 X_22 Y_22 inh_gnd inh_vdd) GPGenerator_22
+    U21 (G0_21 P0_21 X_21 Y_21 inh_gnd inh_vdd) GPGenerator_21
+    U23 (G0_23 P0_23 X_23 Y_23 inh_gnd inh_vdd) GPGenerator_23
+    U55 (G1_24 P1_24 G0_24 P0_24 G0_23 P0_23 inh_gnd inh_vdd) \
+        CarryOperator_54
+    U87 (G2_26 P2_26 G1_26 P1_26 G1_24 P1_24 inh_gnd inh_vdd) \
+        CarryOperator_86
+    U24 (G0_24 P0_24 X_24 Y_24 inh_gnd inh_vdd) GPGenerator_24
+    U56 (G1_25 P1_25 G0_25 P0_25 G0_24 P0_24 inh_gnd inh_vdd) \
+        CarryOperator_55
+    U88 (G2_27 P2_27 G1_27 P1_27 G1_25 P1_25 inh_gnd inh_vdd) \
+        CarryOperator_87
+    U58 (G1_27 P1_27 G0_27 P0_27 G0_26 P0_26 inh_gnd inh_vdd) \
+        CarryOperator_57
+    U57 (G1_26 P1_26 G0_26 P0_26 G0_25 P0_25 inh_gnd inh_vdd) \
+        CarryOperator_56
+    U26 (G0_26 P0_26 X_26 Y_26 inh_gnd inh_vdd) GPGenerator_26
+    U25 (G0_25 P0_25 X_25 Y_25 inh_gnd inh_vdd) GPGenerator_25
+    U27 (G0_27 P0_27 X_27 Y_27 inh_gnd inh_vdd) GPGenerator_27
+    U59 (G1_28 P1_28 G0_28 P0_28 G0_27 P0_27 inh_gnd inh_vdd) \
+        CarryOperator_58
+    U115 (G3_26 P3_26 G2_26 P2_26 G2_22 P2_22 inh_gnd inh_vdd) \
+        CarryOperator_114
+    U140 (G4_27 P4_27 G3_27 P3_27 G3_19 P3_19 inh_gnd inh_vdd) \
+        CarryOperator_139
+    U120 (G3_31 P3_31 G2_31 P2_31 G2_27 P2_27 inh_gnd inh_vdd) \
+        CarryOperator_119
+    U144 (G4_31 P4_31 G3_31 P3_31 G3_23 P3_23 inh_gnd inh_vdd) \
+        CarryOperator_143
+    U160 (S_32 UNCONNECTED22 G4_31 P4_31 G4_15 GND inh_gnd inh_vdd) \
+        CarryOperator_159
+    U112 (G3_23 P3_23 G2_23 P2_23 G2_19 P2_19 inh_gnd inh_vdd) \
+        CarryOperator_111
+    U116 (G3_27 P3_27 G2_27 P2_27 G2_23 P2_23 inh_gnd inh_vdd) \
+        CarryOperator_115
+    U60 (G1_29 P1_29 G0_29 P0_29 G0_28 P0_28 inh_gnd inh_vdd) \
+        CarryOperator_59
+    U28 (G0_28 P0_28 X_28 Y_28 inh_gnd inh_vdd) GPGenerator_28
+    U29 (G0_29 P0_29 X_29 Y_29 inh_gnd inh_vdd) GPGenerator_29
+    U92 (G2_31 P2_31 G1_31 P1_31 G1_29 P1_29 inh_gnd inh_vdd) \
+        CarryOperator_91
+    U156 (G_143 UNCONNECTED18 G4_27 P4_27 G4_11 GND inh_gnd inh_vdd) \
+        CarryOperator_155
+    U31 (G0_31 P0_31 X_31 Y_31 inh_gnd inh_vdd) GPGenerator_31
+    U30 (G0_30 P0_30 X_30 Y_30 inh_gnd inh_vdd) GPGenerator_30
+    U62 (G1_31 P1_31 G0_31 P0_31 G0_30 P0_30 inh_gnd inh_vdd) \
+        CarryOperator_61
+    U137 (G4_24 P4_24 G3_24 P3_24 G3_16 P3_16 inh_gnd inh_vdd) \
+        CarryOperator_136
+    U153 (G_131 UNCONNECTED15 G4_24 P4_24 G4_8 GND inh_gnd inh_vdd) \
+        CarryOperator_152
+    U105 (G3_16 P3_16 G2_16 P2_16 G2_12 P2_12 inh_gnd inh_vdd) \
+        CarryOperator_104
+    U109 (G3_20 P3_20 G2_20 P2_20 G2_16 P2_16 inh_gnd inh_vdd) \
+        CarryOperator_108
+    U113 (G3_24 P3_24 G2_24 P2_24 G2_20 P2_20 inh_gnd inh_vdd) \
+        CarryOperator_112
+    U97 (G3_8 P3_8 G2_8 P2_8 G2_4 P2_4 inh_gnd inh_vdd) CarryOperator_96
+    U93 (G3_4 UNCONNECTED26 G2_4 P2_4 G_194 GND inh_gnd inh_vdd) \
+        CarryOperator_92
+    U101 (G3_12 P3_12 G2_12 P2_12 G2_8 P2_8 inh_gnd inh_vdd) \
+        CarryOperator_100
+    U141 (G4_28 P4_28 G3_28 P3_28 G3_20 P3_20 inh_gnd inh_vdd) \
+        CarryOperator_140
+    U157 (G_147 UNCONNECTED19 G4_28 P4_28 G4_12 GND inh_gnd inh_vdd) \
+        CarryOperator_156
+    U104 (G3_15 P3_15 G2_15 P2_15 G2_11 P2_11 inh_gnd inh_vdd) \
+        CarryOperator_103
+    U100 (G3_11 P3_11 G2_11 P2_11 G2_7 P2_7 inh_gnd inh_vdd) \
+        CarryOperator_99
+    U96 (G3_7 UNCONNECTED29 G2_7 P2_7 G2_3 GND inh_gnd inh_vdd) \
+        CarryOperator_95
+    U108 (G3_19 P3_19 G2_19 P2_19 G2_15 P2_15 inh_gnd inh_vdd) \
+        CarryOperator_107
+    U129 (G4_16 P4_16 G3_16 P3_16 G3_8 P3_8 inh_gnd inh_vdd) \
+        CarryOperator_128
+    U145 (G_99 UNCONNECTED7 G4_16 P4_16 G_194 GND inh_gnd inh_vdd) \
+        CarryOperator_144
+    U133 (G4_20 P4_20 G3_20 P3_20 G3_12 P3_12 inh_gnd inh_vdd) \
+        CarryOperator_132
+    U149 (G_115 UNCONNECTED11 G4_20 P4_20 G3_4 GND inh_gnd inh_vdd) \
+        CarryOperator_148
+    U136 (G4_23 P4_23 G3_23 P3_23 G3_15 P3_15 inh_gnd inh_vdd) \
+        CarryOperator_135
+    U152 (G_127 UNCONNECTED14 G4_23 P4_23 G3_7 GND inh_gnd inh_vdd) \
+        CarryOperator_151
+    U132 (G4_19 P4_19 G3_19 P3_19 G3_11 P3_11 inh_gnd inh_vdd) \
+        CarryOperator_131
+    U148 (G_111 UNCONNECTED10 G4_19 P4_19 G2_3 GND inh_gnd inh_vdd) \
+        CarryOperator_147
+    U121 (G4_8 UNCONNECTED G3_8 P3_8 G_194 GND inh_gnd inh_vdd) \
+        CarryOperator_120
+    U125 (G4_12 UNCONNECTED3 G3_12 P3_12 G3_4 GND inh_gnd inh_vdd) \
+        CarryOperator_124
+    U128 (G4_15 UNCONNECTED6 G3_15 P3_15 G3_7 GND inh_gnd inh_vdd) \
+        CarryOperator_127
+    U124 (G4_11 UNCONNECTED2 G3_11 P3_11 G2_3 GND inh_gnd inh_vdd) \
+        CarryOperator_123
+    U147 (G_107 UNCONNECTED9 G4_18 P4_18 G2_2 GND inh_gnd inh_vdd) \
+        CarryOperator_146
+    U123 (G4_10 UNCONNECTED1 G3_10 P3_10 G2_2 GND inh_gnd inh_vdd) \
+        CarryOperator_122
+    U131 (G4_18 P4_18 G3_18 P3_18 G3_10 P3_10 inh_gnd inh_vdd) \
+        CarryOperator_130
+    U155 (G_139 UNCONNECTED17 G4_26 P4_26 G4_10 GND inh_gnd inh_vdd) \
+        CarryOperator_154
+    U139 (G4_26 P4_26 G3_26 P3_26 G3_18 P3_18 inh_gnd inh_vdd) \
+        CarryOperator_138
+    U151 (G_123 UNCONNECTED13 G4_22 P4_22 G3_6 GND inh_gnd inh_vdd) \
+        CarryOperator_150
+    U127 (G4_14 UNCONNECTED5 G3_14 P3_14 G3_6 GND inh_gnd inh_vdd) \
+        CarryOperator_126
+    U135 (G4_22 P4_22 G3_22 P3_22 G3_14 P3_14 inh_gnd inh_vdd) \
+        CarryOperator_134
+    g107 (n_29 G_194 P0_1 S_1 inh_gnd inh_vdd) MUX21NLL
+    g147 (n_9 P0_30 G_151 S_30 inh_gnd inh_vdd) MUX21NLL
+    g133 (n_16 P0_23 G_123 S_23 inh_gnd inh_vdd) MUX21NLL
+    g153 (n_6 P0_6 G3_5 S_6 inh_gnd inh_vdd) MUX21NLL
+    g119 (n_23 P0_18 G_103 S_18 inh_gnd inh_vdd) MUX21NLL
+    g113 (n_26 P0_15 G4_14 S_15 inh_gnd inh_vdd) MUX21NLL
+    g121 (n_22 P0_19 G_107 S_19 inh_gnd inh_vdd) MUX21NLL
+    g151 (n_7 P0_31 G_155 S_31 inh_gnd inh_vdd) MUX21NLL
+    g131 (n_17 P0_2 G1_1 S_2 inh_gnd inh_vdd) MUX21NLL
+    g157 (n_4 P0_8 G3_7 S_8 inh_gnd inh_vdd) MUX21NLL
+    g145 (n_10 P0_29 G_147 S_29 inh_gnd inh_vdd) MUX21NLL
+    g129 (n_18 P0_22 G_119 S_22 inh_gnd inh_vdd) MUX21NLL
+    g117 (n_24 P0_17 G_99 S_17 inh_gnd inh_vdd) MUX21NLL
+    g125 (n_20 P0_21 G_115 S_21 inh_gnd inh_vdd) MUX21NLL
+    g137 (n_14 P0_25 G_131 S_25 inh_gnd inh_vdd) MUX21NLL
+    g111 (n_27 P0_14 G4_13 S_14 inh_gnd inh_vdd) MUX21NLL
+    g123 (n_21 P0_20 G_111 S_20 inh_gnd inh_vdd) MUX21NLL
+    g155 (n_5 P0_7 G3_6 S_7 inh_gnd inh_vdd) MUX21NLL
+    g105 (n_30 P0_3 G2_2 S_3 inh_gnd inh_vdd) MUX21NLL
+    g159 (n_3 P0_9 G4_8 S_9 inh_gnd inh_vdd) MUX21NLL
+    g165 (n_0 P0_12 G4_11 S_12 inh_gnd inh_vdd) MUX21NLL
+    g139 (n_13 P0_26 G_135 S_26 inh_gnd inh_vdd) MUX21NLL
+    g163 (n_1 P0_11 G4_10 S_11 inh_gnd inh_vdd) MUX21NLL
+    g161 (n_2 P0_10 G4_9 S_10 inh_gnd inh_vdd) MUX21NLL
+    g149 (n_8 P0_5 G3_4 S_5 inh_gnd inh_vdd) MUX21NLL
+    g143 (n_11 P0_28 G_143 S_28 inh_gnd inh_vdd) MUX21NLL
+    g141 (n_12 P0_27 G_139 S_27 inh_gnd inh_vdd) MUX21NLL
+    g127 (n_19 P0_4 G2_3 S_4 inh_gnd inh_vdd) MUX21NLL
+    g109 (n_28 P0_13 G4_12 S_13 inh_gnd inh_vdd) MUX21NLL
+    g135 (n_15 P0_24 G_127 S_24 inh_gnd inh_vdd) MUX21NLL
+    g115 (n_25 P0_16 G4_15 S_16 inh_gnd inh_vdd) MUX21NLL
+    g124 (P0_20 n_21 inh_gnd inh_vdd) IVLLX05
+    g152 (P0_31 n_7 inh_gnd inh_vdd) IVLLX05
+    g140 (P0_26 n_13 inh_gnd inh_vdd) IVLLX05
+    g134 (P0_23 n_16 inh_gnd inh_vdd) IVLLX05
+    g144 (P0_28 n_11 inh_gnd inh_vdd) IVLLX05
+    g154 (P0_6 n_6 inh_gnd inh_vdd) IVLLX05
+    g120 (P0_18 n_23 inh_gnd inh_vdd) IVLLX05
+    g132 (P0_2 n_17 inh_gnd inh_vdd) IVLLX05
+    g162 (P0_10 n_2 inh_gnd inh_vdd) IVLLX05
+    g114 (P0_15 n_26 inh_gnd inh_vdd) IVLLX05
+    g126 (P0_21 n_20 inh_gnd inh_vdd) IVLLX05
+    g130 (P0_22 n_18 inh_gnd inh_vdd) IVLLX05
+    g164 (P0_11 n_1 inh_gnd inh_vdd) IVLLX05
+    g160 (P0_9 n_3 inh_gnd inh_vdd) IVLLX05
+    g118 (P0_17 n_24 inh_gnd inh_vdd) IVLLX05
+    g116 (P0_16 n_25 inh_gnd inh_vdd) IVLLX05
+    g110 (P0_13 n_28 inh_gnd inh_vdd) IVLLX05
+    g106 (P0_3 n_30 inh_gnd inh_vdd) IVLLX05
+    g112 (P0_14 n_27 inh_gnd inh_vdd) IVLLX05
+    g156 (P0_7 n_5 inh_gnd inh_vdd) IVLLX05
+    g158 (P0_8 n_4 inh_gnd inh_vdd) IVLLX05
+    g146 (P0_29 n_10 inh_gnd inh_vdd) IVLLX05
+    g122 (P0_19 n_22 inh_gnd inh_vdd) IVLLX05
+    g150 (P0_5 n_8 inh_gnd inh_vdd) IVLLX05
+    g136 (P0_24 n_15 inh_gnd inh_vdd) IVLLX05
+    g138 (P0_25 n_14 inh_gnd inh_vdd) IVLLX05
+    g108 (G_194 n_29 inh_gnd inh_vdd) IVLLX05
+    g166 (P0_12 n_0 inh_gnd inh_vdd) IVLLX05
+    g142 (P0_27 n_12 inh_gnd inh_vdd) IVLLX05
+    g148 (P0_30 n_9 inh_gnd inh_vdd) IVLLX05
+    g128 (P0_4 n_19 inh_gnd inh_vdd) IVLLX05
+ends UBPriKSA_31_0
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: UBPureKSA_31_0
+// View name: schematic
+subckt UBPureKSA_31_0 S_32 S_31 S_30 S_29 S_28 S_27 S_26 S_25 S_24 S_23 \
+        S_22 S_21 S_20 S_19 S_18 S_17 S_16 S_15 S_14 S_13 S_12 S_11 S_10 \
+        S_9 S_8 S_7 S_6 S_5 S_4 S_3 S_2 S_1 S_0 X_31 X_30 X_29 X_28 X_27 \
+        X_26 X_25 X_24 X_23 X_22 X_21 X_20 X_19 X_18 X_17 X_16 X_15 X_14 \
+        X_13 X_12 X_11 X_10 X_9 X_8 X_7 X_6 X_5 X_4 X_3 X_2 X_1 X_0 Y_31 \
+        Y_30 Y_29 Y_28 Y_27 Y_26 Y_25 Y_24 Y_23 Y_22 Y_21 Y_20 Y_19 Y_18 \
+        Y_17 Y_16 Y_15 Y_14 Y_13 Y_12 Y_11 Y_10 Y_9 Y_8 Y_7 Y_6 Y_5 Y_4 \
+        Y_3 Y_2 Y_1 Y_0 inh_gnd inh_vdd
+    U0 (S_32 S_31 S_30 S_29 S_28 S_27 S_26 S_25 S_24 S_23 S_22 S_21 S_20 \
+        S_19 S_18 S_17 S_16 S_15 S_14 S_13 S_12 S_11 S_10 S_9 S_8 S_7 S_6 \
+        S_5 S_4 S_3 S_2 S_1 S_0 X_31 X_30 X_29 X_28 X_27 X_26 X_25 X_24 \
+        X_23 X_22 X_21 X_20 X_19 X_18 X_17 X_16 X_15 X_14 X_13 X_12 X_11 \
+        X_10 X_9 X_8 X_7 X_6 X_5 X_4 X_3 X_2 X_1 X_0 Y_31 Y_30 Y_29 Y_28 \
+        Y_27 Y_26 Y_25 Y_24 Y_23 Y_22 Y_21 Y_20 Y_19 Y_18 Y_17 Y_16 Y_15 \
+        Y_14 Y_13 Y_12 Y_11 Y_10 Y_9 Y_8 Y_7 Y_6 Y_5 Y_4 Y_3 Y_2 Y_1 Y_0 \
+        GND inh_gnd inh_vdd) UBPriKSA_31_0
+ends UBPureKSA_31_0
+// End of subcircuit definition.
+
+// Library name: 32BitKSA
+// Cell name: UBKSA_31_0_31_0
+// View name: schematic
+U0 (S_32 S_31 S_30 S_29 S_28 S_27 S_26 S_25 S_24 S_23 S_22 S_21 S_20 S_19 \
+        S_18 S_17 S_16 S_15 S_14 S_13 S_12 S_11 S_10 S_9 S_8 S_7 S_6 S_5 \
+        S_4 S_3 S_2 S_1 S_0 X_31 X_30 X_29 X_28 X_27 X_26 X_25 X_24 X_23 \
+        X_22 X_21 X_20 X_19 X_18 X_17 X_16 X_15 X_14 X_13 X_12 X_11 X_10 \
+        X_9 X_8 X_7 X_6 X_5 X_4 X_3 X_2 X_1 X_0 Y_31 Y_30 Y_29 Y_28 Y_27 \
+        Y_26 Y_25 Y_24 Y_23 Y_22 Y_21 Y_20 Y_19 Y_18 Y_17 Y_16 Y_15 Y_14 \
+        Y_13 Y_12 Y_11 Y_10 Y_9 Y_8 Y_7 Y_6 Y_5 Y_4 Y_3 Y_2 Y_1 Y_0 gnd \
+        vdd) UBPureKSA_31_0

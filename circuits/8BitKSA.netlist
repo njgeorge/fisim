@@ -1,0 +1,468 @@
+// Generated for: spectre
+// Generated on: Nov  9 09:31:56 2010
+// Design library name: 8BitKSA
+// Design cell name: UBKSA_7_0_7_0
+// Design view name: schematic
+simulator lang=spectre
+global 0 vdd! GND!
+
+// Library name: CORE9GPLL
+// Cell name: ND2LL
+// View name: cmos_sch
+subckt ND2LL A B Z inh_gnd inh_vdd
+    MP1 (Z B inh_vdd inh_vdd) EPLLGP_BS3JU w=0.77u l=0.13u nfing=1 ncrsd=1 \
+        number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 lpe=0
+    MP0 (Z A inh_vdd inh_vdd) EPLLGP_BS3JU w=0.77u l=0.13u nfing=1 ncrsd=1 \
+        number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 lpe=0
+    MN1 (Z B net15 inh_gnd) ENLLGP_BS3JU w=0.64u l=0.13u nfing=1 ncrsd=1 \
+        number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+    MN0 (net15 A inh_gnd inh_gnd) ENLLGP_BS3JU w=0.64u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+ends ND2LL
+// End of subcircuit definition.
+
+// Library name: CORE9GPLL
+// Cell name: AN2LL
+// View name: cmos_sch
+subckt AN2LL A B Z inh_gnd inh_vdd
+    MP2 (Z net038 inh_vdd inh_vdd) EPLLGP_BS3JU w=1.05u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 \
+        lpe=0
+    MP1 (net038 B inh_vdd inh_vdd) EPLLGP_BS3JU w=0.38u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 \
+        lpe=0
+    MP0 (net038 A inh_vdd inh_vdd) EPLLGP_BS3JU w=0.38u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 \
+        lpe=0
+    MN2 (Z net038 inh_gnd inh_gnd) ENLLGP_BS3JU w=0.585u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+    MN1 (net038 B net12 inh_gnd) ENLLGP_BS3JU w=0.32u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+    MN0 (net12 A inh_gnd inh_gnd) ENLLGP_BS3JU w=0.32u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+ends AN2LL
+// End of subcircuit definition.
+
+// Library name: CORE9GPLL
+// Cell name: ND2ALL
+// View name: cmos_sch
+subckt ND2ALL A B Z inh_gnd inh_vdd
+    MP4 (net025 A inh_vdd inh_vdd) EPLLGP_BS3JU w=0.3u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 \
+        lpe=0
+    MP1 (Z B inh_vdd inh_vdd) EPLLGP_BS3JU w=0.77u l=0.13u nfing=1 ncrsd=1 \
+        number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 lpe=0
+    MP0 (Z net025 inh_vdd inh_vdd) EPLLGP_BS3JU w=0.77u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 \
+        lpe=0
+    MN4 (net025 A inh_gnd inh_gnd) ENLLGP_BS3JU w=0.15u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+    MN1 (Z B net12 inh_gnd) ENLLGP_BS3JU w=0.64u l=0.13u nfing=1 ncrsd=1 \
+        number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+    MN0 (net12 net025 inh_gnd inh_gnd) ENLLGP_BS3JU w=0.64u l=0.13u \
+        nfing=1 ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 \
+        lpe=0
+ends ND2ALL
+// End of subcircuit definition.
+
+// Library name: 8BitKSA
+// Cell name: CarryOperator_16
+// View name: schematic
+subckt CarryOperator_16 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_16
+// End of subcircuit definition.
+
+// Library name: 8BitKSA
+// Cell name: CarryOperator_20
+// View name: schematic
+subckt CarryOperator_20 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g12 (Gi2 Pi1 n_0 inh_gnd inh_vdd) ND2LL
+    g11 (Gi1 n_0 Go inh_gnd inh_vdd) ND2ALL
+    Thru\#0 (GND! Po) iprobe
+ends CarryOperator_20
+// End of subcircuit definition.
+
+// Library name: 8BitKSA
+// Cell name: CarryOperator_18
+// View name: schematic
+subckt CarryOperator_18 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_18
+// End of subcircuit definition.
+
+// Library name: 8BitKSA
+// Cell name: CarryOperator_12
+// View name: schematic
+subckt CarryOperator_12 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_12
+// End of subcircuit definition.
+
+// Library name: 8BitKSA
+// Cell name: CarryOperator_22
+// View name: schematic
+subckt CarryOperator_22 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g12 (Gi2 Pi1 n_0 inh_gnd inh_vdd) ND2LL
+    g11 (Gi1 n_0 Go inh_gnd inh_vdd) ND2ALL
+    Thru\#0 (GND! Po) iprobe
+ends CarryOperator_22
+// End of subcircuit definition.
+
+// Library name: 8BitKSA
+// Cell name: CarryOperator_13
+// View name: schematic
+subckt CarryOperator_13 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_13
+// End of subcircuit definition.
+
+// Library name: 8BitKSA
+// Cell name: CarryOperator_19
+// View name: schematic
+subckt CarryOperator_19 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_19
+// End of subcircuit definition.
+
+// Library name: 8BitKSA
+// Cell name: CarryOperator_23
+// View name: schematic
+subckt CarryOperator_23 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g12 (Gi2 Pi1 n_0 inh_gnd inh_vdd) ND2LL
+    g11 (Gi1 n_0 Go inh_gnd inh_vdd) ND2ALL
+    Thru\#0 (GND! Po) iprobe
+ends CarryOperator_23
+// End of subcircuit definition.
+
+// Library name: CORE9GPLL
+// Cell name: HA1LL
+// View name: cmos_sch
+subckt HA1LL A B CO S inh_gnd inh_vdd
+    MN5 (net34 net14 inh_gnd inh_gnd) ENLLGP_BS3JU w=0.3u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+    MN10 (S net0119 inh_gnd inh_gnd) ENLLGP_BS3JU w=0.585u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+    MN8 (CO net14 inh_gnd inh_gnd) ENLLGP_BS3JU w=0.585u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+    MN6 (net0119 B net34 inh_gnd) ENLLGP_BS3JU w=0.3u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+    MN4 (net0119 A net34 inh_gnd) ENLLGP_BS3JU w=0.3u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+    MN3 (net35 A inh_gnd inh_gnd) ENLLGP_BS3JU w=0.3u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+    MN2 (net14 B net35 inh_gnd) ENLLGP_BS3JU w=0.3u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+    MP10 (S net0119 inh_vdd inh_vdd) EPLLGP_BS3JU w=1.05u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 \
+        lpe=0
+    MP8 (CO net14 inh_vdd inh_vdd) EPLLGP_BS3JU w=1.05u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 \
+        lpe=0
+    MP6 (net0119 net14 inh_vdd inh_vdd) EPLLGP_BS3JU w=0.36u l=0.13u \
+        nfing=1 ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 \
+        nbti=0 lpe=0
+    MP5 (net0119 A net0128 inh_vdd) EPLLGP_BS3JU w=0.63u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 \
+        lpe=0
+    MP4 (net0128 B inh_vdd inh_vdd) EPLLGP_BS3JU w=0.63u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 \
+        lpe=0
+    MP3 (net14 A inh_vdd inh_vdd) EPLLGP_BS3JU w=0.36u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 \
+        lpe=0
+    MP2 (net14 B inh_vdd inh_vdd) EPLLGP_BS3JU w=0.36u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 \
+        lpe=0
+ends HA1LL
+// End of subcircuit definition.
+
+// Library name: 8BitKSA
+// Cell name: GPGenerator_7
+// View name: schematic
+subckt GPGenerator_7 Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator_7
+// End of subcircuit definition.
+
+// Library name: 8BitKSA
+// Cell name: CarryOperator_17
+// View name: schematic
+subckt CarryOperator_17 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_17
+// End of subcircuit definition.
+
+// Library name: 8BitKSA
+// Cell name: CarryOperator_21
+// View name: schematic
+subckt CarryOperator_21 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g12 (Gi2 Pi1 n_0 inh_gnd inh_vdd) ND2LL
+    g11 (Gi1 n_0 Go inh_gnd inh_vdd) ND2ALL
+    Thru\#0 (GND! Po) iprobe
+ends CarryOperator_21
+// End of subcircuit definition.
+
+// Library name: CORE9GPLL
+// Cell name: MUX21NLL
+// View name: cmos_sch
+subckt MUX21NLL A B S Z inh_gnd inh_vdd
+    MP39 (Z net055 net0292 inh_vdd) EPLLGP_BS3JU w=0.965u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 \
+        lpe=0
+    MP21 (net0292 B inh_vdd inh_vdd) EPLLGP_BS3JU w=0.965u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 \
+        lpe=0
+    MP23 (net055 S inh_vdd inh_vdd) EPLLGP_BS3JU w=0.965u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 \
+        lpe=0
+    MP40 (Z S net0280 inh_vdd) EPLLGP_BS3JU w=0.965u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 \
+        lpe=0
+    MP41 (net0280 A inh_vdd inh_vdd) EPLLGP_BS3JU w=0.965u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 \
+        lpe=0
+    MN37 (Z S net057 inh_gnd) ENLLGP_BS3JU w=0.535u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+    MN19 (net057 B inh_gnd inh_gnd) ENLLGP_BS3JU w=0.535u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+    MN21 (net055 S inh_gnd inh_gnd) ENLLGP_BS3JU w=0.535u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+    MN38 (Z net055 net0215 inh_gnd) ENLLGP_BS3JU w=0.535u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+    MN39 (net0215 A inh_gnd inh_gnd) ENLLGP_BS3JU w=0.535u l=0.13u nfing=1 \
+        ncrsd=1 number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+ends MUX21NLL
+// End of subcircuit definition.
+
+// Library name: CORE9GPLL
+// Cell name: IVLLX05
+// View name: cmos_sch
+subckt IVLLX05 A Z inh_gnd inh_vdd
+    MP0 (Z A inh_vdd inh_vdd) EPLLGP_BS3JU w=0.47u l=0.13u nfing=1 ncrsd=1 \
+        number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 nbti=0 lpe=0
+    MN0 (Z A inh_gnd inh_gnd) ENLLGP_BS3JU w=0.25u l=0.13u nfing=1 ncrsd=1 \
+        number=1 srcefirst=1 ngcon=1 mismatch=1 po2act=-1 lpe=0
+ends IVLLX05
+// End of subcircuit definition.
+
+// Library name: 8BitKSA
+// Cell name: CarryOperator_8
+// View name: schematic
+subckt CarryOperator_8 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_8
+// End of subcircuit definition.
+
+// Library name: 8BitKSA
+// Cell name: CarryOperator
+// View name: schematic
+subckt CarryOperator Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g12 (Gi2 Pi1 n_0 inh_gnd inh_vdd) ND2LL
+    g11 (Gi1 n_0 Go inh_gnd inh_vdd) ND2ALL
+    Thru\#0 (GND! Po) iprobe
+ends CarryOperator
+// End of subcircuit definition.
+
+// Library name: 8BitKSA
+// Cell name: GPGenerator_1
+// View name: schematic
+subckt GPGenerator_1 Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator_1
+// End of subcircuit definition.
+
+// Library name: 8BitKSA
+// Cell name: GPGenerator_2
+// View name: schematic
+subckt GPGenerator_2 Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator_2
+// End of subcircuit definition.
+
+// Library name: 8BitKSA
+// Cell name: CarryOperator_9
+// View name: schematic
+subckt CarryOperator_9 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_9
+// End of subcircuit definition.
+
+// Library name: 8BitKSA
+// Cell name: GPGenerator_3
+// View name: schematic
+subckt GPGenerator_3 Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator_3
+// End of subcircuit definition.
+
+// Library name: 8BitKSA
+// Cell name: GPGenerator
+// View name: schematic
+subckt GPGenerator Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator
+// End of subcircuit definition.
+
+// Library name: 8BitKSA
+// Cell name: CarryOperator_14
+// View name: schematic
+subckt CarryOperator_14 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g12 (Gi2 Pi1 n_0 inh_gnd inh_vdd) ND2LL
+    g11 (Gi1 n_0 Go inh_gnd inh_vdd) ND2ALL
+    Thru\#0 (GND! Po) iprobe
+ends CarryOperator_14
+// End of subcircuit definition.
+
+// Library name: 8BitKSA
+// Cell name: CarryOperator_10
+// View name: schematic
+subckt CarryOperator_10 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_10
+// End of subcircuit definition.
+
+// Library name: 8BitKSA
+// Cell name: GPGenerator_4
+// View name: schematic
+subckt GPGenerator_4 Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator_4
+// End of subcircuit definition.
+
+// Library name: 8BitKSA
+// Cell name: GPGenerator_6
+// View name: schematic
+subckt GPGenerator_6 Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator_6
+// End of subcircuit definition.
+
+// Library name: 8BitKSA
+// Cell name: GPGenerator_5
+// View name: schematic
+subckt GPGenerator_5 Go Po A B inh_gnd inh_vdd
+    g17 (A B Go Po inh_gnd inh_vdd) HA1LL
+ends GPGenerator_5
+// End of subcircuit definition.
+
+// Library name: 8BitKSA
+// Cell name: CarryOperator_11
+// View name: schematic
+subckt CarryOperator_11 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g18 (Gi2 Pi1 n_1 inh_gnd inh_vdd) ND2LL
+    g19 (Pi1 Pi2 Po inh_gnd inh_vdd) AN2LL
+    g17 (Gi1 n_1 Go inh_gnd inh_vdd) ND2ALL
+ends CarryOperator_11
+// End of subcircuit definition.
+
+// Library name: 8BitKSA
+// Cell name: CarryOperator_15
+// View name: schematic
+subckt CarryOperator_15 Go Po Gi1 Pi1 Gi2 Pi2 inh_gnd inh_vdd
+    g12 (Gi2 Pi1 n_0 inh_gnd inh_vdd) ND2LL
+    g11 (Gi1 n_0 Go inh_gnd inh_vdd) ND2ALL
+    Thru\#0 (GND! Po) iprobe
+ends CarryOperator_15
+// End of subcircuit definition.
+
+// Library name: 8BitKSA
+// Cell name: UBPriKSA_7_0
+// View name: schematic
+subckt UBPriKSA_7_0 S_8 S_7 S_6 S_5 S_4 S_3 S_2 S_1 S_0 X_7 X_6 X_5 X_4 \
+        X_3 X_2 X_1 X_0 Y_7 Y_6 Y_5 Y_4 Y_3 Y_2 Y_1 Y_0 Cin inh_gnd \
+        inh_vdd
+    U17 (G2_4 P2_4 G1_4 P1_4 G1_2 P1_2 inh_gnd inh_vdd) CarryOperator_16
+    U21 (G_27 UNCONNECTED1 G2_4 P2_4 G_50 GND! inh_gnd inh_vdd) \
+        CarryOperator_20
+    U19 (G2_6 P2_6 G1_6 P1_6 G1_4 P1_4 inh_gnd inh_vdd) CarryOperator_18
+    U13 (G1_6 P1_6 G0_6 P0_6 G0_5 P0_5 inh_gnd inh_vdd) CarryOperator_12
+    U23 (G_35 UNCONNECTED3 G2_6 P2_6 G2_2 GND! inh_gnd inh_vdd) \
+        CarryOperator_22
+    U14 (G1_7 P1_7 G0_7 P0_7 G0_6 P0_6 inh_gnd inh_vdd) CarryOperator_13
+    U20 (G2_7 P2_7 G1_7 P1_7 G1_5 P1_5 inh_gnd inh_vdd) CarryOperator_19
+    U24 (S_8 UNCONNECTED4 G2_7 P2_7 G2_3 GND! inh_gnd inh_vdd) \
+        CarryOperator_23
+    U7 (G0_7 P0_7 X_7 Y_7 inh_gnd inh_vdd) GPGenerator_7
+    U18 (G2_5 P2_5 G1_5 P1_5 G1_3 P1_3 inh_gnd inh_vdd) CarryOperator_17
+    U22 (G_31 UNCONNECTED2 G2_5 P2_5 G1_1 GND! inh_gnd inh_vdd) \
+        CarryOperator_21
+    g37 (n_4 P0_5 G_27 S_5 inh_gnd inh_vdd) MUX21NLL
+    g41 (n_2 P0_7 G_35 S_7 inh_gnd inh_vdd) MUX21NLL
+    g33 (n_6 P0_3 G2_2 S_3 inh_gnd inh_vdd) MUX21NLL
+    g39 (n_3 P0_6 G_31 S_6 inh_gnd inh_vdd) MUX21NLL
+    g43 (n_1 G_50 P0_1 S_1 inh_gnd inh_vdd) MUX21NLL
+    g45 (n_0 P0_2 G1_1 S_2 inh_gnd inh_vdd) MUX21NLL
+    g35 (n_5 P0_4 G2_3 S_4 inh_gnd inh_vdd) MUX21NLL
+    g38 (P0_5 n_4 inh_gnd inh_vdd) IVLLX05
+    g42 (P0_7 n_2 inh_gnd inh_vdd) IVLLX05
+    g44 (G_50 n_1 inh_gnd inh_vdd) IVLLX05
+    g36 (P0_4 n_5 inh_gnd inh_vdd) IVLLX05
+    g34 (P0_3 n_6 inh_gnd inh_vdd) IVLLX05
+    g40 (P0_6 n_3 inh_gnd inh_vdd) IVLLX05
+    g46 (P0_2 n_0 inh_gnd inh_vdd) IVLLX05
+    U9 (G1_2 P1_2 G0_2 P0_2 G0_1 P0_1 inh_gnd inh_vdd) CarryOperator_8
+    U8 (G1_1 UNCONNECTED5 G0_1 P0_1 G_50 GND! inh_gnd inh_vdd) \
+        CarryOperator
+    U1 (G0_1 P0_1 X_1 Y_1 inh_gnd inh_vdd) GPGenerator_1
+    U2 (G0_2 P0_2 X_2 Y_2 inh_gnd inh_vdd) GPGenerator_2
+    U10 (G1_3 P1_3 G0_3 P0_3 G0_2 P0_2 inh_gnd inh_vdd) CarryOperator_9
+    U3 (G0_3 P0_3 X_3 Y_3 inh_gnd inh_vdd) GPGenerator_3
+    U0 (G_50 S_0 X_0 Y_0 inh_gnd inh_vdd) GPGenerator
+    U15 (G2_2 UNCONNECTED G1_2 P1_2 G_50 GND! inh_gnd inh_vdd) \
+        CarryOperator_14
+    U11 (G1_4 P1_4 G0_4 P0_4 G0_3 P0_3 inh_gnd inh_vdd) CarryOperator_10
+    U4 (G0_4 P0_4 X_4 Y_4 inh_gnd inh_vdd) GPGenerator_4
+    U6 (G0_6 P0_6 X_6 Y_6 inh_gnd inh_vdd) GPGenerator_6
+    U5 (G0_5 P0_5 X_5 Y_5 inh_gnd inh_vdd) GPGenerator_5
+    U12 (G1_5 P1_5 G0_5 P0_5 G0_4 P0_4 inh_gnd inh_vdd) CarryOperator_11
+    U16 (G2_3 UNCONNECTED0 G1_3 P1_3 G1_1 GND! inh_gnd inh_vdd) \
+        CarryOperator_15
+ends UBPriKSA_7_0
+// End of subcircuit definition.
+
+// Library name: 8BitKSA
+// Cell name: UBPureKSA_7_0
+// View name: schematic
+subckt UBPureKSA_7_0 S_8 S_7 S_6 S_5 S_4 S_3 S_2 S_1 S_0 X_7 X_6 X_5 X_4 \
+        X_3 X_2 X_1 X_0 Y_7 Y_6 Y_5 Y_4 Y_3 Y_2 Y_1 Y_0 inh_gnd inh_vdd
+    U0 (S_8 S_7 S_6 S_5 S_4 S_3 S_2 S_1 S_0 X_7 X_6 X_5 X_4 X_3 X_2 X_1 \
+        X_0 Y_7 Y_6 Y_5 Y_4 Y_3 Y_2 Y_1 Y_0 GND! inh_gnd inh_vdd) \
+        UBPriKSA_7_0
+ends UBPureKSA_7_0
+// End of subcircuit definition.
+
+// Library name: 8BitKSA
+// Cell name: UBKSA_7_0_7_0
+// View name: schematic
+U0 (S_8 S_7 S_6 S_5 S_4 S_3 S_2 S_1 S_0 X_7 X_6 X_5 X_4 X_3 X_2 X_1 X_0 \
+        Y_7 Y_6 Y_5 Y_4 Y_3 Y_2 Y_1 Y_0 0 vdd!) UBPureKSA_7_0
+simulatorOptions options reltol=1e-3 vabstol=1e-6 iabstol=1e-12 temp=27 \
+    tnom=27 scalem=1.0 scale=1.0 gmin=1e-12 rforce=1 maxnotes=5 maxwarns=5 \
+    digits=5 cols=80 pivrel=1e-3 ckptclock=1800 \
+    sensfile="../psf/sens.output" checklimitdest=psf 
+modelParameter info what=models where=rawfile
+element info what=inst where=rawfile
+outputParameter info what=output where=rawfile
+designParamVals info what=parameters where=rawfile
+primitives info what=primitives where=rawfile
+subckts info what=subckts  where=rawfile
+saveOptions options save=allpub subcktprobelvl=2
