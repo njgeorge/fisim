@@ -1,0 +1,38 @@
+subckt ND2LL A B Z inh_gnd inh_vdd 
+Z = !(A & B)
+ends ND2LL
+
+subckt NR2LL A B Z inh_gnd inh_vdd 
+Z = !(A | B)
+ends NR2LL
+
+subckt AN2LL A B Z inh_gnd inh_vdd 
+Z = A & B
+ends AN2LL
+
+subckt ND2ALL A B Z inh_gnd inh_vdd 
+Z = !(!A & B)
+ends ND2ALL
+
+subckt HA1LL A B CO S inh_gnd inh_vdd 
+CO = A & B
+S = A ^ B
+ends HA1LL
+
+subckt FA1LL A B CI Z CO inh_gnd inh_vdd
+Z = A ^ B ^ CI
+CO = ((A & B) | (A & CI) | (B & CI))
+ends FA1LL
+
+subckt MUX21NLL A B S Z inh_gnd inh_vdd 
+Z = !((A & !S) | (B & S))
+ends MUX21NLL
+
+subckt IVLLX05 A Z inh_gnd inh_vdd 
+Z = !A
+ends IVLLX05
+
+subckt iprobe A Z 
+Z = A
+ends iprobe
+
